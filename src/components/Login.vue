@@ -3,7 +3,7 @@
     <div class="login-caja">
       <h2>Iniciar Sesion</h2>
       <input v-model="username" type="text" placeholder="Usuario" />
-      <input v-model="password" type="text" placeholder="Contraseña" />
+      <input  v-model="password" type="password" placeholder="Contraseña" />
       <button @click="login">Ingresar</button>
     </div>
   </div>
@@ -19,11 +19,12 @@ export default {
   },
   methods: {
     login(){
-        if(this.username === 'admin' && this.password === '123'){
-            localStorage.setItem('usuario','admin');
+      //Consulta a del cliente del password
+        if((this.username === 'admin' || this.username === 'estudiante'  && this.password === '123')){
+            localStorage.setItem('usuario',this.username);
             localStorage.setItem('auth','true'); //bandera que me indique al sistema que se autentico
             //Redireccionar a la pagina de Bienvenida
-            this.$router.push("/home");
+            this.$router.push("/home?anio=2018");
         }
     }
   },
